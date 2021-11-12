@@ -123,7 +123,6 @@ class GC_DscClass : DscClass {
     [void] ConvertOsFilterYmlContentToStringArray() {
         $OsArray = $this.OsFilterYml -replace 'OSVersion:\s*\[|^\[|\]$'
         $this.AllowedOS = $OsArray -split "\s*,\s"
-        $this.AllowedOS | OUT-File -FilePath C:\Users\admbada\Code\local\Concept\Output.txt -Force
     }
 
     [void] GetCurrentOS() {

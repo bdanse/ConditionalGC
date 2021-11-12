@@ -1,9 +1,11 @@
 output/
+MOF/
 
 **.bak
 *.local.*
 !**/README.md
 .kitchen/
+
 
 *.suo
 *.user
