@@ -1,35 +1,24 @@
+$file = "$pwd\start.ps1"
 
-# $env:PSModulePath = $env:PSModulePath + ";" + "$pwd\Modules"
-# $env:PSModulePath
-# #Import-module DscClasses -Verbose -Debug -Force
-# Get-DscResource -Module DscClasses
-
-# break
-
-# Configuration PolicyDscClass {
-
+# Configuration GC_Policy {
 #     Import-DscResource -ModuleName DscClass
-
 #     Node localhost {
 #         DscClass RefName {
-#             Path   = 'C:\Users\admbada\Code\local\Concept\start.ps1'
+#             Path   = $file
 #             Ensure = 'Present'
 #             #OsFilter = 'OSVersion: [WS2019, WS2016]'
 #         }
 #     }
 # }
-# PolicyDscClass -OutputPath .\MOF
-
-# New-GuestConfigurationPackage -Name PolicyDscClass -Configuration .\MOF\localhost.mof
-
-#Test-GuestConfigurationPackage -Path .\PolicyDscClass\PolicyDscClass.zip
+# GC_Policy -OutputPath .\MOF
+# New-GuestConfigurationPackage -Name GC_Policy -Configuration .\MOF\localhost.mof
+# Test-GuestConfigurationPackage -Path .\GC_Policy\GC_Policy.zip
 
 
 Invoke-DscResource -Name DscClass -ModuleName DscClass -Method Get -Property @{
     Path   = "$pwd\start.ps1"
     Ensure = 'Present'
 }
-
 
 Invoke-DscResource -Name DscClass -ModuleName DscClass -Method Test -Property @{
     Path   = "$pwd\start.ps1"
@@ -40,8 +29,7 @@ Invoke-DscResource -Name GC_DscClass -ModuleName DscClass -Method Get -Property 
     Path   = "$pwd\start.ps1"
     Ensure = 'Present'
     OsFilterYml = 'OSVersion: [WS2019, WS2016]'
-}
-$r
+} -Debug -Verbose
 
 Invoke-DscResource -Name GC_DscClass -ModuleName DscClass -Method Test -Property @{
     Path   = "$pwd\start.ps1"
