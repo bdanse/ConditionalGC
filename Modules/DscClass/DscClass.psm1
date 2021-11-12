@@ -4,9 +4,9 @@ enum Ensure {
 }
 
 enum OSLabel {
-    WS2008 = 6003 # Not supported anymore
-    WS2008R2 = 7601 # Not supported anymore
-    WS2012 = 9200
+    WS2008 = 6003 # No support
+    WS2008R2 = 7601 # No support
+    WS2012 = 9200 # No support
     WS2012R2 = 9600
     WS2016 = 14393
     WS2019 = 17763
@@ -86,7 +86,7 @@ class GC_DscClass : DscClass {
         if (!($this.AllowedOS -contains $this.CurrentOS)) {
             $this.Reason += @{
                 Code   = 'GC_DscClass:GC_DscClass:OSFilter'
-                Phrase = 'OsFilter {0} does not contain current OS {1}' -f $this.CurrentOs, ($this.AllowedOS -join ",")
+                Phrase = 'OsFilter {0} does not contain current OS {1}' -f ($this.AllowedOS -join ","), $this.CurrentOs
             }
         }
         else {
@@ -162,6 +162,7 @@ function Get-State {
         Status = $status
         Path   = $Path
         Reason = $reasons
+        Ensure = $Ensure
     }
 
 }
