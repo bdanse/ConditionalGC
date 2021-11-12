@@ -18,21 +18,21 @@ $file = "$pwd\start.ps1"
 Invoke-DscResource -Name DscClass -ModuleName DscClass -Method Get -Property @{
     Path   = "$pwd\start.ps1"
     Ensure = 'Present'
-}
+} -Debug
 
 Invoke-DscResource -Name DscClass -ModuleName DscClass -Method Test -Property @{
     Path   = "$pwd\start.ps1"
     Ensure = 'Present'
-}
+} -Debug
 
 Invoke-DscResource -Name GC_DscClass -ModuleName DscClass -Method Get -Property @{
     Path   = "$pwd\start.ps1"
     Ensure = 'Present'
     OsFilterYml = 'OSVersion: [WS2019, WS2016]'
-} -Debug -Verbose
+} -Debug
 
 Invoke-DscResource -Name GC_DscClass -ModuleName DscClass -Method Test -Property @{
     Path   = "$pwd\start.ps1"
     Ensure = 'Present'
     OsFilterYml = 'OSVersion: [WS2019, WS2016]'
-}
+} -Debug
