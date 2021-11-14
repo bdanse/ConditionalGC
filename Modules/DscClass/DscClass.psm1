@@ -209,7 +209,7 @@ function Test-DscRuntimePlatform {
     if($result -eq $false) {
         $reason = @{
             Code   = 'GC_DscClass:GC_DscClass:RuntimePlatformNotMatched'
-            Phrase = 'Current OS platform is supported'
+            Phrase = 'Current OS platform is not supported'
         }
     }
     return @{
