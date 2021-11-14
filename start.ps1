@@ -25,14 +25,16 @@ Invoke-DscResource -Name DscClass -ModuleName DscClass -Method Test -Property @{
     Ensure = 'Present'
 } -Debug
 
-Invoke-DscResource -Name GC_DscClass -ModuleName DscClass -Method Get -Property @{
+$r = Invoke-DscResource -Name GC_DscClass -ModuleName DscClass -Method Get -Property @{
     Path   = "$pwd\start.ps1"
     Ensure = 'Present'
     OsFilterYml = 'OSVersion: [WS2019, WS2016]'
+    ServerTypeFilterYml = 'ServerType: [Domain Controller, Domain Member, Workgroup Member]';
 } -Debug
 
 Invoke-DscResource -Name GC_DscClass -ModuleName DscClass -Method Test -Property @{
     Path   = "$pwd\start.ps1"
     Ensure = 'Present'
     OsFilterYml = 'OSVersion: [WS2019, WS2016]'
+    ServerTypeFilterYml = 'ServerType: [Domain Controller, Domain Member, Workgroup Member]';
 } -Debug
